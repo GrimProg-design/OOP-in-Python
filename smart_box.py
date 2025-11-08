@@ -47,8 +47,7 @@ class ShoppingCart:
         for i in self.items.values():
             if i == item:
                 return 'товар есть в корзине'
-            else:
-                return 'товара нет в корзине'
+        return 'товара нет в корзине'
 
     def __iter__():
         pass
