@@ -36,8 +36,12 @@ class ShoppingCart:
             self.items.update({key: value})
             return f'Товар {value} успешно добавлен'
 
-    def __delitem__(key):
-        pass
+    def __delitem__(self, key):
+        if key in self.items:
+            self.items.pop(key)
+            return 'Товар успешно удален'
+        else:
+            raise KeyError(f'Товара с id: {key} нет')
 
     def __contains__(value):
         pass
@@ -87,6 +91,8 @@ try:
     print(box.__getitem__(2))
 
     print(box.__setitem__(5, 'Abrokos'))
+    print(box.__len__())
+    print(box.__delitem__(5))
     print(box.__len__())
 except KeyError as err:
     print('Ошибка:', err)
