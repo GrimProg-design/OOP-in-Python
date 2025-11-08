@@ -25,7 +25,7 @@ class ShoppingCart:
 
     def __getitem__(self, key):
             if key in self.items:
-                return self.items[key]
+                return self.items.get(key)
             else:
                 raise KeyError(f'товара c id: {key} нет')
 
@@ -43,8 +43,12 @@ class ShoppingCart:
         else:
             raise KeyError(f'Товара с id: {key} нет')
 
-    def __contains__(value):
-        pass
+    def __contains__(self, item):
+        for i in self.items.values():
+            if i == item:
+                return 'товар есть в корзине'
+            else:
+                return 'товара нет в корзине'
 
     def __iter__():
         pass
@@ -94,5 +98,7 @@ try:
     print(box.__len__())
     print(box.__delitem__(5))
     print(box.__len__())
+
+    print(box.__contains__('apple'))
 except KeyError as err:
     print('Ошибка:', err)
