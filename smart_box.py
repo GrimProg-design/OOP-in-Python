@@ -21,14 +21,20 @@ class ShoppingCart:
         self.items = {1: 'apple'}
 
     def __len__(self):
-        return len(self.items)
+        return f'Всего товаров в корзине: {len(self.items)}'
 
     def __getitem__(self, key):
-        return self.items[key]
+            if key in self.items:
+                return self.items[key]
+            else:
+                raise KeyError(f'товара c id: {key} нет')
 
     def __setitem__(self, key, value):
-        self.items.update({key: value})
-        return f'Товар {value} успешно добавлен'
+        if key in self.items:
+            raise KeyError(f'Товар с id: {key} уже существует в корзине выберите другой')
+        else:
+            self.items.update({key: value})
+            return f'Товар {value} успешно добавлен'
 
     def __delitem__(key):
         pass
@@ -69,10 +75,18 @@ class User:
         self.sum += self.name
         return self.sum
 
-new_product = Product('apple', 23, 'fruit', False)
-new_product_2 = Product('banana', 27, 'fruit', False)
-box = ShoppingCart('Ilia', 200)
-print(new_product.get_final_price())
-print(len(box))
-print(box.__getitem__(1))
-print(box.__setitem__(2, 'banana'))
+
+try:
+    new_product = Product('apple', 23, 'fruit', False)
+    new_product_2 = Product('banana', 27, 'fruit', False)
+    box = ShoppingCart('Ilia', 200)
+    print(new_product.get_final_price())
+    print(box.__len__())
+    print(box.__getitem__(1))
+    print(box.__setitem__(2, 'banana'))
+    print(box.__getitem__(2))
+
+    print(box.__setitem__(5, 'Abrokos'))
+    print(box.__len__())
+except KeyError as err:
+    print('Ошибка:', err)
