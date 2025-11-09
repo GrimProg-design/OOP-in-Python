@@ -52,8 +52,8 @@ class ShoppingCart:
     def __iter__():
         pass
 
-    def __add__():
-        pass
+    def __add__(self, other):
+        return other + self.budget
 
     def __iadd__():
         pass
@@ -77,6 +77,7 @@ try:
     new_product = Product('apple', 23, 'fruit', False)
     new_product_2 = Product('banana', 27, 'fruit', False)
     box = ShoppingCart('Ilia', 200)
+    box_2 = ShoppingCart('Egor', 300)
     print(new_product.get_final_price())
     print(box.__len__())
     print(box.__getitem__(1))
@@ -89,5 +90,6 @@ try:
     print(box.__len__())
 
     print(box.__contains__('apple'))
+    print(box + box_2)
 except KeyError as err:
     print('Ошибка:', err)
