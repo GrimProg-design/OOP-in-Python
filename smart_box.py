@@ -52,8 +52,9 @@ class ShoppingCart:
     def __iter__():
         pass
 
-    def __add__(self, other):
-        return other + self.budget
+    def __add__(self, other_b):
+        total = other_b + self.budget
+        return f'общий бюджет: {total} сом'
 
     def __iadd__():
         pass
