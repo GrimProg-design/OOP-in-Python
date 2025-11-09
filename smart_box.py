@@ -73,16 +73,6 @@ class ShoppingCart:
     def most_expensive():
         pass
 
-class User:
-    def __init__(self, name):
-        self.name = name
-        self.sum = 0
-
-    def __len__(self):
-        self.sum += self.name
-        return self.sum
-
-
 try:
     new_product = Product('apple', 23, 'fruit', False)
     new_product_2 = Product('banana', 27, 'fruit', False)
