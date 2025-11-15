@@ -5,32 +5,35 @@ class FileSistemItem:
         self.modified_at = modified_at
         self.owner = owner
 
-    def get_size(self):
+    def _get_size(self, content):
         return 'Это абстрактный метод'
     
-    def search(self, pattern):
+    def _search(self, pattern):
         return 'Это абстрактный метод'
     
-    def get_path(self):
+    def _get_path(self):
         return 'Это абстрактный метод'
     
 class File(FileSistemItem):
-    def __init__(self, content, extension, size):
-        self.content = content
+    def __init__(self, extension, size=0):
+        self.content = None
         self.extension = extension
         self.size = size
 
     def read(self):
-        return
+        return self.content
     
     def wright(self, content):
-        return
+        self.content = content
+        return 'Файл создан'
     
     def append(self, content):
-        return
+        self.content += content
+        return 'Файл был успешно обновлен'
     
-    def __len__():
-        return
+    def __len__(self):
+        length = len(self.content) * 2
+        return f'{length} байт по UTF-16'
     
 class Directory(FileSistemItem):
     def __init__(self):
@@ -62,3 +65,10 @@ class Directory(FileSistemItem):
     
     def __len__(self):
         return
+    
+file = File('.py', 0)
+print(file.wright('Hello'))
+print(file.read())
+print(file.append(''))
+print(file.read())
+print(file.__len__())
