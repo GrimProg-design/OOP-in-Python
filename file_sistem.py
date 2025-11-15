@@ -15,7 +15,8 @@ class FileSistemItem:
         return 'Это абстрактный метод'
     
 class File(FileSistemItem):
-    def __init__(self, extension, size=0):
+    def __init__(self, name, extension, size=0):
+        super().__init__(name, created_at=None, modified_at=None, owner=None)
         self.content = None
         self.extension = extension
         self.size = size
@@ -37,10 +38,15 @@ class File(FileSistemItem):
     
 class Directory(FileSistemItem):
     def __init__(self):
-        self.children = []
+        self.children = {}
 
     def add(self, item):
-        return
+        if item.name in self.children:
+            raise ValueError(f"Элемент '{item.name}' уже существует в директории")
+        
+        self.children[item.name] = item
+        print(self.children)
+        return f"'{item.name}' успешно добавлен"
     
     def remove(self, name):
         return
@@ -66,9 +72,12 @@ class Directory(FileSistemItem):
     def __len__(self):
         return
     
-file = File('.py', 0)
+file = File('first', '.py')
+directory = Directory()
 print(file.wright('Hello'))
 print(file.read())
 print(file.append(''))
 print(file.read())
 print(file.__len__())
+
+print(directory.add(file))
